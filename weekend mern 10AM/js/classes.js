@@ -85,6 +85,35 @@
 // let a = new xyz();
 
 
+class abc {
+   
+    constructor(name,age) {
+        this.name = name
+        this.age = age
+    }
+
+    get getName() {
+        console.log(this.name);
+    }
+
+    set setName(name) {
+        this.name = name;
+        console.log(this.name);
+    }
+}
+
+let name = "safsadf"
+let age =  20;
+
+const a = new abc(name,age);
+
+// a.name = "fddasfsadfsadfsa";
+
+// a.setName = "fasfsadfasfasfdasdfasfasdfasdf";
+
+// console.log(a.name);
+
+
 
 
 
