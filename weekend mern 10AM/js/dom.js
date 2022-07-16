@@ -38,3 +38,22 @@
 
 // const root = document.querySelectorAll('.root');
 // console.log(root);
+
+
+// Create Element
+
+const p = document.createElement('p');
+p.innerText = "fdasfasfsadf";
+p.className = "fasfdsafasfd";
+
+// const attr = document.createAttribute('fdsadasfsaf');
+// attr.value = "Fasfasdfasdffdas";
+
+
+// p.setAttribute('fasfsdaf','fasfsadf');
+
+const root = document.getElementById('root')
+
+root.append(p);
+
+
