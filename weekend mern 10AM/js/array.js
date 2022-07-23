@@ -129,7 +129,14 @@
 
 
 
+// class Name {
+//     constructor(name) {
+//         this.name = name;
+//     }
+// }
 
+// let name2 = new Name
+// console.log(name2.name);
 
 
 
