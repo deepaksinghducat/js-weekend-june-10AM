@@ -1,3 +1,4 @@
+"use strict";
 // Variable data 
 // oops 
 // class 
@@ -6,6 +7,7 @@
 // interface
 // namespace 
 // modules
+exports.__esModule = true;
 // variables 
 // String variables
 // let fullName : string =  "fsafdassafsasafd";
@@ -22,7 +24,13 @@
 // any variables
 // let var1 : any = "asfasfdsafd";
 // var1 = 10;
-function fullName(firstName, lastName) {
-    return firstName + " " + lastName;
-}
-console.log(fullName("fdsafas", "fsafasdf"));
+// function fullName(firstName: string, lastName: string) {
+//     return firstName + " " + lastName;
+// }
+// console.log(fullName("fdsafas","fsafasdf"));
+// armstrong number
+// A  TO Z print 
+var Exports_js_1 = require("./Exports.js");
+console.log(Exports_js_1["default"]);
+console.log((0, Exports_js_1.details)());
+console.log((0, Exports_js_1.details1)());

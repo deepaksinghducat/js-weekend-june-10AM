@@ -73,25 +73,24 @@
 
 /// Abstract 
 
+// abstract class Employee {
+//     protected name: string = "fsafdsaf"
+//     protected age: number = 20
 
-abstract class Employee {
-    protected name: string = "fsafdsaf"
-    protected age: number = 20
+//     constructor(name: string,age : number) {
+//         this.name = name;
+//         this.age = age;
+//     }   
 
-    constructor(name: string,age : number) {
-        this.name = name;
-        this.age = age;
-    }   
+//     abstract details(): string;
+// }
 
-    abstract details(): string;
-}
+// class Department extends Employee {
 
-class Department extends Employee {
-
-    details(): string {
-        return `${this.name} is ${this.age}`;
-    }
-}
+//     details(): string {
+//         return `${this.name} is ${this.age}`;
+//     }
+// }
 
 
 

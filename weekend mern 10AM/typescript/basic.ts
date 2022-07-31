@@ -49,6 +49,13 @@
 // armstrong number
 // A  TO Z print 
 
+import  products, { details, details1 }  from './Exports.js'
+
+console.log(products);
+
+console.log(details());
+
+console.log(details1());
 
 
 
