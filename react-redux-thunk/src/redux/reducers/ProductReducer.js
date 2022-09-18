@@ -5,22 +5,21 @@ const initialProductState = {
 	err: ''
 }
 
-export const ProductReducer = (state = initialProductState,action) => {
+export const ProductReducer = (state = initialProductState, action) => {
 	switch (action.type) {
-		case GET_PRODUCTS: 
-
+		case GET_PRODUCTS:
 			return {
 				...state,
 				products: [...action.payload]
 			}
 
-		case ERR_PRODUCTS: 
+		case ERR_PRODUCTS:
 			return {
 				...state,
 				products: [],
 				err: action.payload
 			}
-		
+
 		default:
 			return state;
 	}
