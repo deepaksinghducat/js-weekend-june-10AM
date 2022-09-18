@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import reducers from "../reducers/RootReducer";
 
-const initialState ={
+const initialState = {
 	products: [],
 	carts: []
 }
