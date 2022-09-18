@@ -11,11 +11,17 @@ import User from '../components/pages/accounts/users/User'
 import AddEditUser from '../components/pages/accounts/users/AddEditUser'
 import AddEditProduct from '../components/pages/accounts/products/AddEditProduct'
 import Product from '../components/pages/accounts/products/Product'
+import Order from '../components/pages/accounts/orders/Order'
+import View from '../components/pages/accounts/orders/View'
+import Cart from '../components/pages/Cart'
+import Checkout from '../components/pages/Checkout'
 
 const Router = () => {
   return (
     <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path='/accounts' element={<Account />}>
@@ -31,7 +37,10 @@ const Router = () => {
 
             <Route path="products" element={<Product/>} />
             <Route path="add-product" element={<AddEditProduct />} />
-            <Route path="edit-product/:id" element={<AddEditProduct />} />           
+            <Route path="edit-product/:id" element={<AddEditProduct />} />     
+
+            <Route path="orders" element={<Order />} />
+            <Route path="order/view/:id" element={<View />} />           
 
         </Route>
     </Routes>
