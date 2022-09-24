@@ -79,10 +79,9 @@ const AddEditUser = () => {
         });
     };
 
-
     return (
         <Fragment>
-            <h2>{id ? 'Edit': 'Add'} User <Link to="/accounts/users" className='btn btn-primary' style={{
+            <h2>{id ? 'Edit' : 'Add'} User <Link to="/accounts/users" className='btn btn-primary' style={{
                 float: 'right',
             }}>Back</Link></h2>
             <Form noValidate validated={validated} onSubmit={handleSubmit} className="p-4">
