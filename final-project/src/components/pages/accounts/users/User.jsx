@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const User = () => {
 
-    const {user} = useSelector(state =>state.user);
+    const { user } = useSelector(state => state.user);
 
     return (
         <Fragment>
@@ -27,22 +27,22 @@ const User = () => {
                     {
                         user.length > 0 && user.map((usr, index) => (
                             <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{usr.name}</td>
-                            <td>{usr.email}</td>
-                            <td>{usr.role}</td>
-                            <td>{usr.status == '1' ? 'Active' : 'Inactive'}</td>
-                            <td>
-                                <Link to={`/accounts/edit-user/${index}`} className='btn btn-outline-primary mx-2'>
-                                    Edit
-                                </Link>
-                                <button className='btn btn-outline-danger'>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                                <td>{index + 1}</td>
+                                <td>{usr.name}</td>
+                                <td>{usr.email}</td>
+                                <td>{usr.role}</td>
+                                <td>{usr.status == '1' ? 'Active' : 'Inactive'}</td>
+                                <td>
+                                    <Link to={`/accounts/edit-user/${index}`} className='btn btn-outline-primary mx-2'>
+                                        Edit
+                                    </Link>
+                                    <button className='btn btn-outline-danger'>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
                         ))
-                    }                    
+                    }
                 </tbody>
             </Table>
         </Fragment>

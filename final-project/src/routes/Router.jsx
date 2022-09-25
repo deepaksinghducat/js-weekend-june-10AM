@@ -15,6 +15,7 @@ import Order from '../components/pages/accounts/orders/Order'
 import View from '../components/pages/accounts/orders/View'
 import Cart from '../components/pages/Cart'
 import Checkout from '../components/pages/Checkout'
+import PageNotFound from '../components/pages/PageNotFound'
 
 const Router = () => {
   return (
@@ -43,6 +44,7 @@ const Router = () => {
             <Route path="order/view/:id" element={<View />} />           
 
         </Route>
+        <Route path="*" element={<PageNotFound />} />
     </Routes>
   )
 }
