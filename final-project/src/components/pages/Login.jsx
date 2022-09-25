@@ -3,10 +3,26 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './Login.css'
+
+let initialValue = {
+    email: '',
+    password: ''
+}
 
 const Login = () => {
     const [validated, setValidated] = useState(false);
+
+    const [formValue, setFormValue] = useState(initialValue);
+
+    const { email, password } = formValue;
+
+    const { user }  = useSelector(state => state.user);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -14,10 +30,39 @@ const Login = () => {
         if (form.checkValidity() === false) {
             
             event.stopPropagation();
-        }
+        }else{
+            setValidated(true);
 
-        setValidated(true);
+            let check = user.find((usr,index) => {
+                if(usr.email === formValue.email && usr.password === formValue.password) {
+                    return usr
+                }
+            }) 
+
+            if(check) {
+
+                toast.success('Login successful');
+
+                localStorage.setItem('logined_user',JSON.stringify(check));
+
+                navigate('/accounts/profile');
+            }else {
+                toast.error('Invalid credentials');
+            }
+        }
     };
+
+    const onInputChange = (e) => {
+        e.preventDefault();
+
+        const { name, value } = e.target;
+
+        setFormValue({
+            ...formValue,
+            [name]: value,
+        });
+    };
+
 
     return (
         <div className='login'>
@@ -28,9 +73,10 @@ const Login = () => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             required
-                            type="text"
-                            placeholder="Email"
-                            defaultValue=""
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={onInputChange}
                         />
                     </Form.Group>
                     <Form.Group as={Col} md="12" controlId="validationCustom02" className="mb-3">
@@ -38,8 +84,9 @@ const Login = () => {
                         <Form.Control
                             required
                             type="password"
-                            placeholder="Password"
-                            defaultValue=""
+                            name="password"
+                            value={password}
+                            onChange={onInputChange}
                         />
                     </Form.Group>
                 </Row>

@@ -1,7 +1,15 @@
 import { ADD_USER_SUCCESS, REMOVE_USER_SUCCESS, UPDATE_USER_SUCCESS } from "../contants/UserContant";
 
+let previousUsers = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : [];
+
 const initialUserState = {
-    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : []
+    user: [{
+        name: "Admin",
+        email: "admin@example.com",
+        password: "password",
+        role: "admin",
+        status: "1",
+    }, ...previousUsers]
 }
 
 let user = [];
@@ -23,7 +31,7 @@ export const UserReducer = (state = initialUserState, action) => {
         case UPDATE_USER_SUCCESS:
 
             user = state.user.map((user, index) => {
-                
+
                 if (index === parseInt(action.payload.id)) {
                     return action.payload.user;
                 }
