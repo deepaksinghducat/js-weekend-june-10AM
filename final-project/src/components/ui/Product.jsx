@@ -1,8 +1,16 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useDispatch } from 'react-redux';
+import { addCartStart } from '../../redux/actions/CartAction';
 
 const Product = ({data}) => {
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(addCartStart(data));
+  }
 
   return (
     <Card>
@@ -12,7 +20,10 @@ const Product = ({data}) => {
         <Card.Text>
           {data.description}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Card.Text>
+          Price:  ${data.price}
+        </Card.Text>
+        <Button variant="primary" onClick={addToCartHandler}>Add to Cart</Button>
       </Card.Body>
     </Card>
   )

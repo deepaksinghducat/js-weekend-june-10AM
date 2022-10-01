@@ -16,7 +16,6 @@ const Home = () => {
                     </Col>
                 )) : (<p> No Product</p>)
             }
-
         </Row>
 
     )
