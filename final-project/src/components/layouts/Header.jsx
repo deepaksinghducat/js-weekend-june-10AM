@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -13,6 +14,8 @@ const Header = () => {
   const loginUser = localStorage.getItem('logined_user') ? JSON.parse(localStorage.getItem('logined_user')) : [];
 
   const navigate = useNavigate();
+
+  const { cartItems } = useSelector(state => state.cart);
 
   const logoutHandler = () => {
     toast.success('Logout Successfully')
@@ -39,7 +42,9 @@ const Header = () => {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/cart">Cart <Badge pill bg="danger">10</Badge></Nav.Link>
+                <Nav.Link as={Link} to="/cart">Cart 
+                  { cartItems && cartItems.length > 0  && <Badge pill bg="danger">{cartItems.length}</Badge> }
+                </Nav.Link>
 
                 {
                   loginUser.length === 0 &&
@@ -59,12 +64,12 @@ const Header = () => {
                     <NavDropdown.Item as={Link} to="/accounts/orders">Orders</NavDropdown.Item>
 
                     {
-                      loginUser.role == 'admin' && <Fragment>
-                          <NavDropdown.Item as={Link} to="/accounts/products">Products</NavDropdown.Item>
-                          <NavDropdown.Item as={Link} to="/accounts/users">Users</NavDropdown.Item>
-                          <NavDropdown.Item as={Link} to="/accounts/roles">Roles</NavDropdown.Item>
+                      loginUser.role === 'admin' && <Fragment>
+                        <NavDropdown.Item as={Link} to="/accounts/products">Products</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/accounts/users">Users</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/accounts/roles">Roles</NavDropdown.Item>
                       </Fragment>
-                    }                  
+                    }
 
                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
 
