@@ -1,4 +1,6 @@
 import { 
+    ADDRESS_CART_START,
+    ADDRESS_CART_SUCCESS,
     ADD_CART_START, 
     ADD_CART_SUCCESS, 
     DECREMENT_CART_START, 
@@ -67,6 +69,16 @@ export const inputCartSuccess = (product,quantity) => ({
         product,
         quantity
     }
+})
+
+export const addressCartStart = (payload) => ({
+    type: ADDRESS_CART_START,
+    payload
+})
+
+export const addressCartSuccess = (payload) => ({
+    type: ADDRESS_CART_SUCCESS,
+    payload
 })
 
 export const removeCartStart = (product) => ({

@@ -1,6 +1,6 @@
 import { fork, put, takeLatest } from 'redux-saga/effects'
-import { ADD_CART_START, DECREMENT_CART_START, INCREMENT_CART_START, INPUT_CART_START, REMOVE_CART_START } from "../contants/CartContant";
-import { addCartSuccess, decrementCartSuccess, incrementCartSuccess, inputCartSuccess, removeCartsSuccess } from "../actions/CartAction";
+import { ADDRESS_CART_START, ADD_CART_START, DECREMENT_CART_START, INCREMENT_CART_START, INPUT_CART_START, REMOVE_CART_START } from "../contants/CartContant";
+import { addCartSuccess, addressCartSuccess, decrementCartSuccess, incrementCartSuccess, inputCartSuccess, removeCartsSuccess } from "../actions/CartAction";
 
 function* addCartStartAsync({payload}) {
     try {
@@ -30,6 +30,13 @@ function* inputCartStartAsync({payload}) {
     }catch(err) {}
 }
 
+function* addressCartStartAsync({payload}) {
+    try {
+        yield put(addressCartSuccess(payload))
+
+    }catch(err) {}
+}
+
 function* removeCartStartAsync({payload}) {
     try {
         yield put(removeCartsSuccess(payload))
@@ -53,6 +60,10 @@ function* inputCartStart() {
     yield takeLatest(INPUT_CART_START, inputCartStartAsync)
 }
 
+function* addressCartStart() {
+    yield takeLatest(ADDRESS_CART_START, addressCartStartAsync)
+}
+
 function* removeCartStart() {
     yield takeLatest(REMOVE_CART_START, removeCartStartAsync)
 }
@@ -62,6 +73,7 @@ const CartSagas = [
     fork(incrementCartStart),
     fork(decrementCartStart),
     fork(inputCartStart),
+    fork(addressCartStart),
     fork(removeCartStart),
 ]
 
