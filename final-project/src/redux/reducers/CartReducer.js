@@ -1,9 +1,7 @@
-import { ADD_CART_SUCCESS, REMOVE_CART_SUCCESS } from "../contants/CartContant";
+import { ADD_CART_SUCCESS, DECREMENT_CART_SUCCESS, INCREMENT_CART_SUCCESS, INPUT_CART_SUCCESS, REMOVE_CART_SUCCESS } from "../contants/CartContant";
 import { addToCartHelper, removeToCartHelper } from "../Helpers/Helper";
 
 let previousCartState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-
-console.log(previousCartState);
 
 const initialCartState = {
     cartItems: previousCartState ? previousCartState.cartItems: [],
@@ -15,12 +13,21 @@ const initialCartState = {
 let cart = [];
 
 export const CartReducer = (state = initialCartState, action) => {
+
     switch (action.type) {
         case ADD_CART_SUCCESS:
 
             cart = addToCartHelper(state, action.payload);
 
-            console.log(cart);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            return cart;
+
+        case INCREMENT_CART_SUCCESS:
+        case DECREMENT_CART_SUCCESS: 
+        case INPUT_CART_SUCCESS:
+
+            cart = addToCartHelper(state, action.payload.product, true, action.payload.quantity);
 
             localStorage.setItem("cart", JSON.stringify(cart));
 
