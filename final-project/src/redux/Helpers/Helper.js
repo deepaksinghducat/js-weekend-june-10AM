@@ -1,4 +1,4 @@
-export const addToCartHelper = (cart, product) => {
+export const addToCartHelper = (cart, product, quantityUpdate = false, quantity = 0) => {
     const CalculatedCart = {
         cartItems: cart.cartItems,
         subTotal: 0,
@@ -13,7 +13,11 @@ export const addToCartHelper = (cart, product) => {
         if (productExist) {
             CalculatedCart.cartItems = cart.cartItems.map(cartItem => {
                 if (cartItem.name === product.name) {
-                    cartItem.quantity += 1;
+                    if(quantityUpdate) {
+                        cartItem.quantity = quantity;
+                    }else{
+                        cartItem.quantity += 1;
+                    }
                 }
 
                 CalculatedCart.subTotal = cartItem.price * cartItem.quantity;
@@ -36,8 +40,6 @@ export const addToCartHelper = (cart, product) => {
         CalculatedCart.subTotal = product.price * product.quantity;
         CalculatedCart.grandTotal = CalculatedCart.subTotal + CalculatedCart.taxes;
     }
-
-    console.log(CalculatedCart);
 
     return CalculatedCart;
 }
