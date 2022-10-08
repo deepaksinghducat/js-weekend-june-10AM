@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';
 import CartItem from '../ui/CartItem';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -40,9 +41,11 @@ const Cart = () => {
           <ListGroup.Item>GrandTotal: ${cart.grandTotal}</ListGroup.Item>
           <ListGroup.Item>
             <div className="d-grid gap-2">
-              <Button variant="primary" size="lg">
-                Proceed To Checkout
-              </Button>
+              <Link to="/checkout">
+                <Button variant="primary" size="lg">
+                  Proceed To Checkout
+                </Button>
+              </Link>              
             </div>
           </ListGroup.Item>
         </ListGroup>

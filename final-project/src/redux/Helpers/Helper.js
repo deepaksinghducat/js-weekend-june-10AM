@@ -1,12 +1,14 @@
 export const addToCartHelper = (cart, product, quantityUpdate = false, quantity = 0) => {
+
     const CalculatedCart = {
-        cartItems: cart.cartItems,
+        cartItems: cart.cartItems ? cart.cartItems: []  ,
         subTotal: 0,
         taxes: 0,
-        grandTotal: 0
+        grandTotal: 0,
+        address: {}
     }
 
-    if (cart.cartItems.length > 0) {
+    if (cart.cartItems && cart.cartItems.length > 0) {
 
         let productExist = cart.cartItems.find(cartItem => cartItem.name === product.name);
 
@@ -49,7 +51,8 @@ export const removeToCartHelper = (cart, product) => {
         cartItems: cart.cartItems,
         subTotal: cart.subTotal,
         taxes: cart.taxes,
-        grandTotal: cart.grandTotal
+        grandTotal: cart.grandTotal,
+        address: {}
     }
 
     if (cart.cartItems.length > 0) {
