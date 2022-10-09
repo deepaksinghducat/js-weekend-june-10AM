@@ -1,55 +1,61 @@
-import React, { Fragment, useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import { Link } from 'react-router-dom';
+import React, { Fragment } from 'react'
+import { Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 
 const View = () => {
 
-    const [validated, setValidated] = useState(false);
+    const {id} = useParams();
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        event.preventDefault();
-        if (form.checkValidity() === false) {
+    let {orders} = useSelector(state => state.order);
 
-            event.stopPropagation();
-        }
+    orders = orders.orders;
 
-        setValidated(true);
-    };
-
+    let order = orders.find((order,index) => index === parseInt(id));
 
     return (
         <Fragment>
-            <h2>Add User <Link to="/accounts/users" className='btn btn-primary' style={{
+            <h2>Order  id: #{id}<Link to="/accounts/orders" className='btn btn-primary' style={{
                 float: 'right',
             }}>Back</Link></h2>
-            <Form noValidate validated={validated} onSubmit={handleSubmit} className="p-4">
-                <Row>
-                    <Form.Group as={Col} md="12" controlId="validationCustom01" className="mb-3">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Name"
-                            defaultValue=""
-                        />
-                    </Form.Group>
+            
+            <div className='mt-4'>
+                <h3>Billing Address</h3>
+                <p>Name: {order.address.name}</p>
+                <p>email: {order.address.email}</p>
+                <p>state: {order.address.state}</p>
+                <p>country: {order.address.country}</p>
+                <p>mobile: {order.address.mobile}</p>
+            </div>
 
-                    <Form.Group as={Col} md="12" controlId="validationCustom02" className="mb-3">
-                        <Form.Label>Status</Form.Label>
-                        <Form.Select required aria-label="Default select example">
-                            <option>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </Form.Select>
-                    </Form.Group>
-                </Row>
-                <Button type="submit">Submit form</Button>
-            </Form>
+            <div className='mt-4'>
+            <Table>
+            <thead>
+              <tr>
+                <th>Item</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+                order.cartItems && order.cartItems.length > 0 && order.cartItems.map((cartItem, index) => (
+                  <tr key={index}>
+                    <td className='d-flex' >
+                    <div>
+                      <img src={cartItem.image_url} alt={cartItem.name} />
+                    </div>
+                    <div className='mx-4'>
+                      <p>{cartItem.name}</p>
+                      <p>Price: ${cartItem.price}</p>
+                      <p>Qty : {cartItem.quantity}</p>
+                    </div>
+                  </td>
+                  </tr>
+                  
+                ))
+              }
+            </tbody>
+          </Table>
+            </div>
         </Fragment>
     )
 }
