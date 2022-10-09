@@ -1,8 +1,14 @@
 import React, { Fragment } from 'react'
 import Table from 'react-bootstrap/Table';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Order = () => {
+
+    let { orders } = useSelector(state => state.order);
+
+    orders = orders.orders;
+
     return (
         <Fragment>
             <h2 className='mb-4'>Order</h2>
@@ -10,23 +16,27 @@ const Order = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Subtotal</th>
+                        <th>Grandtotal</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>
-                            <Link to="/accounts/edit-role/1" className='btn btn-outline-primary mx-2'>
-                                Edit
-                            </Link>
-                            <button className='btn btn-outline-danger'>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+                    {
+                        orders.length > 0 && orders.map((order, index) => (
+                            <tr key={index}>
+                                <td>{index}</td>
+                                <td>$ {order.subTotal}</td>
+                                <td>$ {order.grandTotal}</td>
+                                <td>
+                                    <Link to={`/accounts/order/view/${index}`} className='btn btn-outline-primary mx-2'>
+                                        View
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))
+                    }
+
                 </tbody>
             </Table>
         </Fragment>

@@ -1,5 +1,6 @@
 import { all } from "redux-saga/effects";
 import CartSagas from "./CartSaga";
+import OrderSagas from "./OrderSaga";
 import ProductSagas from "./ProductSaga";
 import RoleSagas from "./RoleSaga";
 import UserSagas from "./UserSaga";
@@ -9,7 +10,8 @@ function* RootSagas() {
         ...RoleSagas,
         ...UserSagas,
         ...ProductSagas,
-        ...CartSagas
+        ...CartSagas,
+        ...OrderSagas
     ])
 }
 

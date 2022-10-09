@@ -4,11 +4,11 @@ import { addToCartHelper, removeToCartHelper } from "../Helpers/Helper";
 let previousCartState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
 
 const initialCartState = {
-    cartItems: previousCartState ? previousCartState.cartItems: [],
-    subTotal: previousCartState ? previousCartState.subTotal: 0,
-    taxes:  previousCartState ? previousCartState.taxes:0,
-    grandTotal: previousCartState ? previousCartState.grandTotal: 0,
-    address: {}
+    cartItems: previousCartState ? previousCartState.cartItems : [],
+    subTotal: previousCartState ? previousCartState.subTotal : 0,
+    taxes: previousCartState ? previousCartState.taxes : 0,
+    grandTotal: previousCartState ? previousCartState.grandTotal : 0,
+    address: previousCartState ? previousCartState.address : {},
 }
 
 let cart = [];
@@ -25,7 +25,7 @@ export const CartReducer = (state = initialCartState, action) => {
             return cart;
 
         case INCREMENT_CART_SUCCESS:
-        case DECREMENT_CART_SUCCESS: 
+        case DECREMENT_CART_SUCCESS:
         case INPUT_CART_SUCCESS:
 
             cart = addToCartHelper(state, action.payload.product, true, action.payload.quantity);
@@ -34,12 +34,16 @@ export const CartReducer = (state = initialCartState, action) => {
 
             return cart;
 
-        case ADDRESS_CART_SUCCESS: 
+        case ADDRESS_CART_SUCCESS:
 
-            return {
+            cart = {
                 ...state,
                 address: action.payload
             }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            return cart;
 
         case REMOVE_CART_SUCCESS:
 

@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Accordion from 'react-bootstrap/Accordion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addressCartStart } from '../../redux/actions/CartAction';
 
-const initialValue = {
+let initialValue = {
     name: '',
     email: '',
     state: '',
@@ -17,6 +17,12 @@ const initialValue = {
 }
 
 const BillingAddress = () => {
+
+    const cart = useSelector(state => state.cart);
+
+    if(cart.address) {
+        initialValue = cart.address;
+    }
 
     const [validated, setValidated] = useState(false);
 

@@ -1,5 +1,4 @@
 import { fork, put, takeLatest } from 'redux-saga/effects'
-import { removeRoleSuccess, updateRoleSuccess } from '../actions/RoleAction'
 import { addUserSuccess, removeUserSuccess, updateUserSuccess } from '../actions/UserAction'
 import { ADD_USER_START, REMOVE_USER_START, UPDATE_USER_START } from '../contants/UserContant'
 
